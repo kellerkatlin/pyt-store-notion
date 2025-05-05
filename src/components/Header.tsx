@@ -59,7 +59,7 @@ export default function Header() {
     } else {
       setSuggestions([]);
     }
-  }, [search]);
+  }, [search, allProducts]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

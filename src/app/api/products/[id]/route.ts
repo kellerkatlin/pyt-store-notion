@@ -7,7 +7,6 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const allProducts = await getProducts();
-  console.log("All products:", allProducts);
   const product = allProducts.find((p) => p.id === params.id);
 
   if (!product) {

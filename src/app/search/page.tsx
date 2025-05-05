@@ -27,25 +27,26 @@ export default function SearchPage() {
 
       let result = data;
 
-      // Filtro por marcas si hay
+      // Filtro por marcas
       if (selectedBrands.length > 0) {
         result = result.filter((p: Product) =>
           selectedBrands.includes(p.marca)
         );
       }
+
       // Filtro por capacidad
       if (selectedCapacities.length > 0) {
         result = result.filter((p: Product) =>
           selectedCapacities.includes(p.capacidad)
         );
       }
-      // Filtro de precios
 
-      if (min && max) {
-        result = result.filter(
-          (p: Product) => p.precio_oferta >= min && p.precio_oferta <= max
-        );
-      }
+      // Filtro por precio
+      result = result.filter(
+        (p: Product) => p.precio_oferta >= min && p.precio_oferta <= max
+      );
+
+      // Ordenar por query si hay
       if (query) {
         result = result.sort((a: Product, b: Product) => {
           const aMatch = a.product.toLowerCase().includes(query);
@@ -60,7 +61,7 @@ export default function SearchPage() {
     }
 
     fetchProducts();
-  }, [selectedBrands.join(","), selectedCapacities.join(","), min, max, query]); // se vuelve a ejecutar si cambian marcas o q
+  }, [selectedBrands, selectedCapacities, min, max, query]);
 
   return (
     <div className="container mx-auto px-4 py-8">
